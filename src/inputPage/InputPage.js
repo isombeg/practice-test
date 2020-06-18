@@ -24,7 +24,7 @@ class InputPage extends React.Component{
         this.setState({counter: this.state.counter+1});
     }
 
-    addAnswer = (id) => event => {
+    addAnswer = (id) => () => {
         const questionIndex = this.state.questions.findIndex(element => element.id === id);
         let newArray = [...this.state.questions];
         newArray[questionIndex].answers.push('')
@@ -32,12 +32,16 @@ class InputPage extends React.Component{
         console.log(this.state.questions);
     }
 
-    deleteQuestion = key => {
-
+    deleteQuestion = key => () => {
+        let newArray = this.state.questions.filter(question => question.id !== key);
+        this.setState({questions: newArray});
     }
 
-    deleteAnswer = (key, id) => {
-        
+    deleteAnswer = (key, index) => () => {
+        const questionIndex = this.state.questions.findIndex(element => element.id === key);
+        let newArray = [...this.state.questions];
+        newArray[questionIndex].answers.splice(index, 1);
+        this.setState({questions: newArray});
     }
 
     onQuestionUpdate = id => event => {
@@ -63,6 +67,8 @@ class InputPage extends React.Component{
                     <QuestionList
                         questions={this.state.questions}
                         addAnswer={this.addAnswer}
+                        deleteQuestion={this.deleteQuestion}
+                        deleteAnswer={this.deleteAnswer}
                         onQuestionUpdate={this.onQuestionUpdate}
                         onAnswerUpdate={this.onAnswerUpdate}
                     />

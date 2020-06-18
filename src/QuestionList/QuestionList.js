@@ -1,18 +1,20 @@
 import React from 'react';
 import QuestionForm from '../QuestionForm/QuestionForm';
 
-const QuestionList = ({questions, onQuestionUpdate, onAnswerUpdate, addAnswer}) => {
+const QuestionList = (props) => {
     
     return(
-        questions.map(
+        props.questions.map(
             q => {
                 return (<div key={q.id.toString()}>
                     <QuestionForm
                         id={q.id.toString()}
                         question={q}
-                        onQuestionUpdate={onQuestionUpdate}
-                        onAnswerUpdate={onAnswerUpdate}
-                        addAnswer={addAnswer}
+                        onQuestionUpdate={props.onQuestionUpdate}
+                        onAnswerUpdate={props.onAnswerUpdate}
+                        addAnswer={props.addAnswer}
+                        deleteQuestion={props.deleteQuestion}
+                        deleteAnswer={props.deleteAnswer}
                     />
                     </div>);
             }

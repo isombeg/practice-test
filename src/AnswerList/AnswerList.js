@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AnswerList = ({questionId, answers, onAnswerUpdate}) => {
+const AnswerList = ({questionId, answers, onAnswerUpdate, deleteAnswer}) => {
     return (
         answers.map((answer, index) => {
             return (
@@ -16,6 +16,7 @@ const AnswerList = ({questionId, answers, onAnswerUpdate}) => {
                         />
                         <button 
                             className='w-30 grow f4 link ph3 pv2 dib'
+                            onClick={deleteAnswer(questionId, index)}
                             >
                                 Delete
                         </button>
