@@ -10,39 +10,39 @@ class InputPage extends React.Component{
         }
     }
 
-    addQuestion = () => {
-        this.setState({
-            questions: [
-                ...this.state.questions,
-                {
-                    question: "",
-                    answers: ['', ''],
-                    id: this.state.counter.toString()
-                }
-            ]
-        })
-        this.setState({counter: this.state.counter+1});
-    }
+    // addQuestion = () => {
+    //     this.setState({
+    //         questions: [
+    //             ...this.state.questions,
+    //             {
+    //                 question: "",
+    //                 answers: ['', ''],
+    //                 id: this.state.counter.toString()
+    //             }
+    //         ]
+    //     })
+    //     this.setState({counter: this.state.counter+1});
+    // }
 
-    addAnswer = (id) => () => {
-        const questionIndex = this.state.questions.findIndex(element => element.id === id);
-        let newArray = [...this.state.questions];
-        newArray[questionIndex].answers.push('')
-        this.setState({questions: newArray});
-        console.log(this.state.questions);
-    }
+    // addAnswer = (id) => () => {
+    //     const questionIndex = this.state.questions.findIndex(element => element.id === id);
+    //     let newArray = [...this.state.questions];
+    //     newArray[questionIndex].answers.push('')
+    //     this.setState({questions: newArray});
+    //     console.log(this.state.questions);
+    // }
 
-    deleteQuestion = key => () => {
-        let newArray = this.state.questions.filter(question => question.id !== key);
-        this.setState({questions: newArray});
-    }
+    // deleteQuestion = key => () => {
+    //     let newArray = this.state.questions.filter(question => question.id !== key);
+    //     this.setState({questions: newArray});
+    // }
 
-    deleteAnswer = (key, index) => () => {
-        const questionIndex = this.state.questions.findIndex(element => element.id === key);
-        let newArray = [...this.state.questions];
-        newArray[questionIndex].answers.splice(index, 1);
-        this.setState({questions: newArray});
-    }
+    // deleteAnswer = (key, index) => () => {
+    //     const questionIndex = this.state.questions.findIndex(element => element.id === key);
+    //     let newArray = [...this.state.questions];
+    //     newArray[questionIndex].answers.splice(index, 1);
+    //     this.setState({questions: newArray});
+    // }
 
     onQuestionUpdate = id => event => {
         const questionIndex = this.state.questions.findIndex(element => element.id === id);
