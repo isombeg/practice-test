@@ -1,5 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import AnswerList from '../AnswerList/AnswerList';
+import {updateQuestion} from '../actions';
+
+const mapStateToProps = state => {
+    return {
+        questions: state.manageQuestionList
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onUpdateQuestion: id => event => dispatch(updateQuestion(id, event.target.value))
+    }
+}
 
 const QuestionForm = (props) => {
     return (
@@ -10,10 +24,10 @@ const QuestionForm = (props) => {
                     className="input-reset ba b--black-20 pa2 mb2 db w-100" 
                     type="text" 
                     aria-describedby="name-desc" 
-                    onChange={props.onQuestionUpdate(props.id)}
+                    onChange={props.onUpdateQuestion(props.question.id)}
                 />
             </div>
-            <AnswerList
+            {/* <AnswerList
                 questionId={props.id}
                 answers={props.question.answers}
                 onAnswerUpdate={props.onAnswerUpdate}
@@ -28,9 +42,9 @@ const QuestionForm = (props) => {
                         <p onClick={props.deleteQuestion(props.id)} href="#0" className="f6 link dim black db pointer">Delete Question</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
 
-export default QuestionForm;
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionForm);

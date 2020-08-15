@@ -1,14 +1,58 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import QuestionList from '../QuestionList/QuestionList'
+import {incrementID, addQuestion} from '../actions';
+
+const mapStateToProps = state => {
+    return {
+        nextID: state.manageNextID.nextID,
+        questions: state.manageQuestionList
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onIncrementID: () => dispatch(incrementID()),
+        onAddQuestion: (id) => dispatch(addQuestion(id))
+    }
+}
 
 class InputPage extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            counter: 0,
-            questions : []
-        }
+    
+   addQuestion = () => {
+        this.props.onAddQuestion(this.props.nextID);
+        this.props.onIncrementID();
+        console.log('questions', this.props.questions);
+   }
+
+    render(){
+        const {questions} = this.props;
+        
+        return (
+            <div>
+                <div>
+                    <QuestionList
+                        questions={questions}
+                    />
+                </div>
+                <div className="lh-copy mt3">
+                    <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>
+                </div>
+            </div>
+            
+        );
     }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputPage);
+
+ // constructor(){
+    //     super();
+    //     this.state = {
+    //         counter: 0,
+    //         questions : []
+    //     }
+    // }
 
     // addQuestion = () => {
     //     this.setState({
@@ -44,42 +88,18 @@ class InputPage extends React.Component{
     //     this.setState({questions: newArray});
     // }
 
-    onQuestionUpdate = id => event => {
-        const questionIndex = this.state.questions.findIndex(element => element.id === id);
-        let newArray = [...this.state.questions];
-        newArray[questionIndex].question = event.target.value;
-        this.setState({questions: newArray});
-        console.log(this.state.questions);
-    }
+    // onQuestionUpdate = id => event => {
+    //     const questionIndex = this.state.questions.findIndex(element => element.id === id);
+    //     let newArray = [...this.state.questions];
+    //     newArray[questionIndex].question = event.target.value;
+    //     this.setState({questions: newArray});
+    //     console.log(this.state.questions);
+    // }
 
-    onAnswerUpdate = (id, index) => event => {
-        const questionIndex = this.state.questions.findIndex(element => element.id === id);
-        let newArray = [...this.state.questions];
-        newArray[questionIndex].answers[index] = event.target.value;
-        this.setState({questions: newArray});
-        console.log(this.state.questions);
-    }
-
-    render(){
-        return (
-            <div>
-                <div>
-                    <QuestionList
-                        questions={this.state.questions}
-                        addAnswer={this.addAnswer}
-                        deleteQuestion={this.deleteQuestion}
-                        deleteAnswer={this.deleteAnswer}
-                        onQuestionUpdate={this.onQuestionUpdate}
-                        onAnswerUpdate={this.onAnswerUpdate}
-                    />
-                </div>
-                <div className="lh-copy mt3">
-                    <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>
-                </div>
-            </div>
-            
-        );
-    }
-}
-
-export default InputPage;
+    // onAnswerUpdate = (id, index) => event => {
+    //     const questionIndex = this.state.questions.findIndex(element => element.id === id);
+    //     let newArray = [...this.state.questions];
+    //     newArray[questionIndex].answers[index] = event.target.value;
+    //     this.setState({questions: newArray});
+    //     console.log(this.state.questions);
+    // }

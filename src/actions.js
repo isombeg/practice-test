@@ -1,6 +1,17 @@
 export const addQuestion = (id) => ({
     type: "question/addQuestion",
-    id: id
+    question: {
+        id: id,
+        text: ''
+    }
+})
+
+export const updateQuestion = (id, payload) => ({
+    type: "question/updateQuestion",
+    question: {
+        id: id,
+        text: payload
+    }
 })
 
 export const deleteQuestion = (id) => ({
@@ -19,7 +30,7 @@ export const deleteAnswer = (questionID, answerID) => ({
     answerID: answerID
 })
 
-export const incrementID = (nextID) => ({
-    type: "id/increment",
-    payload: nextID
+export const incrementID = () => ({
+    type: "id/increment"
 })
+
