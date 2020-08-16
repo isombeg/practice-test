@@ -15,7 +15,6 @@ export const manageNextID = (state = initialNextID, action = {}) => {
 
 export const manageQuestionList = (state = questions, action = {}) => {
     
-    console.log('action:', action);
     switch(action.type){
 
         case "question/addQuestion":
@@ -25,12 +24,32 @@ export const manageQuestionList = (state = questions, action = {}) => {
             ]
 
         case "question/updateQuestion":
-            const uptIndex = state.findIndex(elem => elem.id === action.id)
-            return [...state.slice(0, uptIndex), action.item, ...state.slice(uptIndex + 1)]
-        
+            return state.map((question) => {
+                if (question.id !== action.id) {
+                  return question
+                }
+            
+                return {
+                  ...question,
+                  text: action.payload
+                }
+            })
+
         case "question/deleteQuestion":
             const delIndex = state.findIndex(elem => elem.id === action.id)
             return [...state.slice(0, delIndex), ...state.slice(delIndex + 1)]
+        
+        // case "answer/addAnswer":
+        //     return state.map((question) => {
+        //         if (question.id !== action.questionID) {
+        //           return question
+        //         }
+            
+        //         return {
+        //           ...question,
+        //           answers: [...answers, action.answer]
+        //         }
+        //     })
 
         default:
             return state;

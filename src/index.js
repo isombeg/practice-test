@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   manageNextID,
   manageQuestionList
 })
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(
   <React.StrictMode>

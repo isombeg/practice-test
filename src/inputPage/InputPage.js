@@ -22,18 +22,14 @@ class InputPage extends React.Component{
    addQuestion = () => {
         this.props.onAddQuestion(this.props.nextID);
         this.props.onIncrementID();
-        console.log('questions', this.props.questions);
    }
 
     render(){
-        const {questions} = this.props;
-        
+        console.log(this.props.questions);
         return (
             <div>
                 <div>
-                    <QuestionList
-                        questions={questions}
-                    />
+                    <QuestionList />
                 </div>
                 <div className="lh-copy mt3">
                     <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>

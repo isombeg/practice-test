@@ -2,16 +2,15 @@ export const addQuestion = (id) => ({
     type: "question/addQuestion",
     question: {
         id: id,
-        text: ''
+        text: '',
+        answers: []
     }
 })
 
 export const updateQuestion = (id, payload) => ({
     type: "question/updateQuestion",
-    question: {
-        id: id,
-        text: payload
-    }
+    id: id,
+    payload: payload,
 })
 
 export const deleteQuestion = (id) => ({
@@ -19,9 +18,20 @@ export const deleteQuestion = (id) => ({
     id: id
 })
 
-export const addAnswer = (questionID) => ({
+export const addAnswer = (questionID, answerID) => ({
     type: "answer/addAnswer",
-    questionID: questionID
+    questionID: questionID,
+    answer: {
+        id: answerID,
+        text: ''
+    }
+})
+
+export const updateAnswer = (questionID, answerID, payload) => ({
+    type: "answer/updateAnswer",
+    questionID: questionID,
+    answerID: answerID,
+    payload: payload
 })
 
 export const deleteAnswer = (questionID, answerID) => ({

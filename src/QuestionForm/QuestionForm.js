@@ -1,19 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import AnswerList from '../AnswerList/AnswerList';
-import {updateQuestion} from '../actions';
 
-const mapStateToProps = state => {
-    return {
-        questions: state.manageQuestionList
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onUpdateQuestion: id => event => dispatch(updateQuestion(id, event.target.value))
-    }
-}
 
 const QuestionForm = (props) => {
     return (
@@ -23,8 +10,9 @@ const QuestionForm = (props) => {
                 <input id="name"
                     className="input-reset ba b--black-20 pa2 mb2 db w-100" 
                     type="text" 
+                    value={props.question.text}
                     aria-describedby="name-desc" 
-                    onChange={props.onUpdateQuestion(props.question.id)}
+                    onChange={props.onUpdateQuestion}
                 />
             </div>
             {/* <AnswerList
@@ -32,19 +20,19 @@ const QuestionForm = (props) => {
                 answers={props.question.answers}
                 onAnswerUpdate={props.onAnswerUpdate}
                 deleteAnswer={props.deleteAnswer}
-                />
+                /> */}
             <div>
                 <div className='center'>
-                    <div className="lh-copy mt3 w-50">
+                    {/* <div className="lh-copy mt3 w-50">
                         <p onClick={props.addAnswer(props.id)} href="#0" className="f6 link dim black db pointer">Add Answer</p>
-                    </div>
+                    </div> */}
                     <div className="lh-copy mt3 w-50">
-                        <p onClick={props.deleteQuestion(props.id)} href="#0" className="f6 link dim black db pointer">Delete Question</p>
+                        <p onClick={props.onDeleteQuestion} href="#0" className="f6 link dim black db pointer">Delete Question</p>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionForm);
+export default QuestionForm;
