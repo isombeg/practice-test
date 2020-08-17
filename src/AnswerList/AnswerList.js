@@ -1,8 +1,21 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {updateAnswer, deleteAnswer} from '../actions';
 
-const AnswerList = ({questionId, answers, onAnswerUpdate, deleteAnswer}) => {
+const mapStateToProps = state => {
+    return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onUpdateAnswer: (questionID, answerID) => (event) => dispatch(updateAnswer(questionID, answerID, event.target.value)),
+        onDeleteAnswer: (questionID, answerID) => () => dispatch(deleteAnswer(questionID, answerID))
+    }
+}
+
+const AnswerList = ({question, onUpdateAnswer, onDeleteAnswer}) => {
     return (
-        answers.map((answer, index) => {
+        question.answers.map((answer) => {
             return (
                 <div class="pa4 black-80">
                     <div class="measure centre">
@@ -11,12 +24,13 @@ const AnswerList = ({questionId, answers, onAnswerUpdate, deleteAnswer}) => {
                             id="name"
                             class="input-reset ba b--black-20 pa2 mb2 db w-70"
                             type="text"
+                            value={answer.text}
                             aria-describedby="name-desc"
-                            onChange={onAnswerUpdate(questionId, index)}
+                            onChange={onUpdateAnswer(question.id, answer.id)}
                         />
                         <button 
                             className='w-30 grow f4 link ph3 pv2 dib'
-                            onClick={deleteAnswer(questionId, index)}
+                            onClick={onDeleteAnswer(question.id, answer.id)}
                             >
                                 Delete
                         </button>
@@ -27,4 +41,4 @@ const AnswerList = ({questionId, answers, onAnswerUpdate, deleteAnswer}) => {
     )
 }
 
-export default AnswerList;
+export default connect(mapStateToProps, mapDispatchToProps)(AnswerList);

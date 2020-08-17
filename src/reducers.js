@@ -39,17 +39,51 @@ export const manageQuestionList = (state = questions, action = {}) => {
             const delIndex = state.findIndex(elem => elem.id === action.id)
             return [...state.slice(0, delIndex), ...state.slice(delIndex + 1)]
         
-        // case "answer/addAnswer":
-        //     return state.map((question) => {
-        //         if (question.id !== action.questionID) {
-        //           return question
-        //         }
+        case "answer/addAnswer":
+            return state.map((question) => {
+                if (question.id !== action.questionID) {
+                  return question
+                }
             
-        //         return {
-        //           ...question,
-        //           answers: [...answers, action.answer]
-        //         }
-        //     })
+                return {
+                  ...question,
+                  answers: [...question.answers, action.answer]
+                }
+            })
+
+        case "answer/updateAnswer":
+            return state.map((question) => {
+                if (question.id !== action.questionID) {
+                  return question
+                }
+            
+                return {
+                    ...question,
+                    answers: question.answers.map(answer => {
+                    if(answer.id !== action.answerID){
+                        return answer;
+                    }
+
+                    return {
+                        ...answer,
+                        text: action.payload
+                    }
+                    })
+                }
+            })
+
+        case "answer/deleteAnswer":
+            return state.map((question) => {
+                if (question.id !== action.questionID) {
+                  return question
+                }
+            
+                const delIndex = question.answers.findIndex(elem => elem.id === action.answerID)
+                return {
+                  ...question,
+                  answers: [...question.answers.slice(0, delIndex), ...question.answers.slice(delIndex + 1)]
+                }
+            })
 
         default:
             return state;
