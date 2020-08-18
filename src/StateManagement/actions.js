@@ -1,3 +1,7 @@
+export const incrementID = () => ({
+    type: "id/increment"
+})
+
 export const addQuestion = (id) => ({
     type: "question/addQuestion",
     question: {
@@ -47,7 +51,18 @@ export const deleteAnswer = (questionID, answerID) => ({
     answerID: answerID
 })
 
-export const incrementID = () => ({
-    type: "id/increment"
+export const nextQuestion = () => ({
+    type: "quiz/nextQuestion"
 })
 
+export const prevQuestion = () => ({
+    type: "quiz/prevQuestion"
+})
+
+export const addResponse = (questionID, answerID) => ({
+    type: "quiz/addResponse",
+    reponse: {
+        questionID: questionID,
+        answerID: answerID
+    }
+})

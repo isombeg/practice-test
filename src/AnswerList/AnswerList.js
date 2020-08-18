@@ -18,12 +18,12 @@ const AnswerList = ({question, onSetCorrectAnswer, onUpdateAnswer, onDeleteAnswe
     return (
         question.answers.map((answer) => {
             return (
-                <div class="pa4 black-80">
-                    <div class="measure centre">
-                        <label htmlFor="name" class="f6 b db mb2">Answer: </label>
+                <div className="pa4 black-80">
+                    <div className="measure centre">
+                        <label htmlFor="name" className="f6 b db mb2">Answer: </label>
                         <input
                             id="name"
-                            class="input-reset ba b--black-20 pa2 mb2 db w-70"
+                            className="input-reset ba b--black-20 pa2 mb2 db w-70"
                             type="text"
                             value={answer.text}
                             aria-describedby="name-desc"

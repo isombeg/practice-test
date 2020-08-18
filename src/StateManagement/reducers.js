@@ -1,6 +1,8 @@
 // Initial states
 const initialNextID = {nextID: 0};
 const questions = [];
+const initCurrQuestion = {currQuestion: 0};
+const responses = [];
 
 // Reducers
 
@@ -97,6 +99,37 @@ export const manageQuestionList = (state = questions, action = {}) => {
                   correctAnswer: (question.correctAnswer === action.answerID) ? null : question.correctAnswer
                 }
             })
+
+        default:
+            return state;
+    }
+}
+
+export const manageQuizQuestioning = (state = initCurrQuestion, action = {}) => {
+    
+    switch(action.type){
+        case "quiz/nextQuestion":
+            return {
+                ...state,
+                currQuestion: state.currQuestion + 1
+            }
+
+        case "quiz/prevQuestion":
+            return {
+                ...state,
+                currQuestion: state.currQuestion - 1
+            }
+
+        default:
+            return state;
+    }
+}
+
+export const manageResponseCollection = (state = responses, action = {}) => {
+
+    switch(action.type){
+        case "quiz/addResponse":
+            return 
 
         default:
             return state;
