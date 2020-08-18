@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AnswerList from '../AnswerList/AnswerList';
-import {incrementID, addAnswer} from '../actions';
+import {incrementID, addAnswer} from '../StateManagement/actions';
 
 const mapStateToProps = state => {
     return {

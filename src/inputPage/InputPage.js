@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import QuestionList from '../QuestionList/QuestionList'
-import {incrementID, addQuestion} from '../actions';
+import {incrementID, addQuestion} from '../StateManagement/actions';
 
 const mapStateToProps = state => {
     return {
@@ -33,6 +33,9 @@ class InputPage extends React.Component{
                 </div>
                 <div className="lh-copy mt3">
                     <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>
+                </div>
+                <div className="lh-copy mt3">
+                    <button href="#0" className="f6 link dim black db pointer">Submit</button>
                 </div>
             </div>
             

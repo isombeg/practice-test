@@ -38,6 +38,18 @@ export const manageQuestionList = (state = questions, action = {}) => {
         case "question/deleteQuestion":
             const delIndex = state.findIndex(elem => elem.id === action.id)
             return [...state.slice(0, delIndex), ...state.slice(delIndex + 1)]
+
+        case "question/setCorrectAnswer":
+            return state.map((question) => {
+                if (question.id !== action.questionID) {
+                  return question
+                }
+            
+                return {
+                  ...question,
+                  correctAnswer: action.answerID
+                }
+            })
         
         case "answer/addAnswer":
             return state.map((question) => {
@@ -81,7 +93,8 @@ export const manageQuestionList = (state = questions, action = {}) => {
                 const delIndex = question.answers.findIndex(elem => elem.id === action.answerID)
                 return {
                   ...question,
-                  answers: [...question.answers.slice(0, delIndex), ...question.answers.slice(delIndex + 1)]
+                  answers: [...question.answers.slice(0, delIndex), ...question.answers.slice(delIndex + 1)],
+                  correctAnswer: (question.correctAnswer === action.answerID) ? null : question.correctAnswer
                 }
             })
 

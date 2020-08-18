@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateAnswer, deleteAnswer} from '../actions';
+import {setCorrectAnswer, updateAnswer, deleteAnswer} from '../StateManagement/actions';
 
 const mapStateToProps = state => {
     return {}
@@ -8,12 +8,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onSetCorrectAnswer: (questionID, answerID) => () => dispatch(setCorrectAnswer(questionID, answerID)),
         onUpdateAnswer: (questionID, answerID) => (event) => dispatch(updateAnswer(questionID, answerID, event.target.value)),
         onDeleteAnswer: (questionID, answerID) => () => dispatch(deleteAnswer(questionID, answerID))
     }
 }
 
-const AnswerList = ({question, onUpdateAnswer, onDeleteAnswer}) => {
+const AnswerList = ({question, onSetCorrectAnswer, onUpdateAnswer, onDeleteAnswer}) => {
     return (
         question.answers.map((answer) => {
             return (
@@ -28,6 +29,12 @@ const AnswerList = ({question, onUpdateAnswer, onDeleteAnswer}) => {
                             aria-describedby="name-desc"
                             onChange={onUpdateAnswer(question.id, answer.id)}
                         />
+                        <button 
+                            className='w-30 grow f4 link ph3 pv2 dib'
+                            onClick={onSetCorrectAnswer(question.id, answer.id)}
+                            >
+                                Correct Answer
+                        </button>
                         <button 
                             className='w-30 grow f4 link ph3 pv2 dib'
                             onClick={onDeleteAnswer(question.id, answer.id)}
