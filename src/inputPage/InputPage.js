@@ -25,6 +25,67 @@ class InputPage extends React.Component{
         this.props.onIncrementID();
    }
 
+   validate = () => {
+    //    To be considered valid:
+    //      - must be at least 1 question
+    //      - every question must have at least 2 answers
+    //      - all text must be full
+    //      - all questions must have a correct
+
+        const {questions} = this.props;
+
+        if(!questions.length){
+            return (
+                <button
+                    href="#0"
+                    className="f6 link dim black db pointer"
+                    disabled
+                    >
+                        Submit
+                </button>
+            )
+        }
+
+        for(let question of questions){
+            if(!question.text.trim().length || question.correctAnswer === null || question.answers.length < 2){
+                return (
+                    <button
+                        href="#0"
+                        className="f6 link dim black db pointer"
+                        disabled
+                        >
+                            Submit
+                    </button>
+                )
+            }
+
+            for(let answer of question.answers){
+                if(!answer.text.trim().length){
+                    return (
+                        <button
+                            href="#0"
+                            className="f6 link dim black db pointer"
+                            disabled
+                            >
+                                Submit
+                        </button>
+                    )
+                }
+            }
+        }
+
+        return (
+            <Link to="/quiz" className="lh-copy mt3">
+                <button
+                    href="#0"
+                    className="f6 link dim black db pointer"
+                    >
+                        Submit
+                    </button>
+            </Link>
+        )
+   }
+
     render(){
         console.log(this.props.questions);
         return (
@@ -35,9 +96,7 @@ class InputPage extends React.Component{
                 <div className="lh-copy mt3">
                     <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>
                 </div>
-                <Link to="/quiz" className="lh-copy mt3">
-                    <button href="#0" className="f6 link dim black db pointer">Submit</button>
-                </Link>
+                {this.validate()}
             </div>
             
         );

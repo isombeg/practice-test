@@ -42,3 +42,5 @@
   justify-content: center;
   width: auto;
 }
+
+.green { color: var(--green); }
