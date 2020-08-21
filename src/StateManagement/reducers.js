@@ -74,14 +74,14 @@ export const manageQuestionList = (state = questions, action = {}) => {
                 return {
                     ...question,
                     answers: question.answers.map(answer => {
-                    if(answer.id !== action.answerID){
-                        return answer;
-                    }
+                        if(answer.id !== action.answerID){
+                            return answer;
+                        }
 
-                    return {
-                        ...answer,
-                        text: action.payload
-                    }
+                        return {
+                            ...answer,
+                            text: action.payload
+                        }
                     })
                 }
             })
@@ -129,8 +129,33 @@ export const manageResponseCollection = (state = responses, action = {}) => {
 
     switch(action.type){
         case "quiz/addResponse":
-            return 
+        
+            if(!(state.length)){
+                return [...state, action.response];
+            }
+            
+            let mid = 0, left = 0, right = state.length - 1;
+            while(right > left){
+                mid = Math.floor((right-left)/2);
 
+                if(action.response.questionID === state[mid].questionID){
+                    return [...state.slice(0, mid), action.response, ...state.slice(mid + 1)];
+                }
+                else if(action.response.questionID < state[mid].questionID){
+                    right--;
+                }
+                else{
+                    left++;
+                }
+            }
+
+            if(action.response.questionID === state[left].questionID){
+                return [...state.slice(0, left), action.response, ...state.slice(left + 1)];
+            }
+            return action.response.questionID > state[left].questionID ?
+                [...state.slice(0, left + 1), action.response, ...state.slice(left + 1)] :
+                [...state.slice(0, left), action.response, ...state.slice(left)];
+            
         default:
             return state;
     }

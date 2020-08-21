@@ -9,14 +9,16 @@ import * as serviceWorker from './serviceWorker';
 import {
   manageNextID,
   manageQuestionList,
-  manageQuizQuestioning
+  manageQuizQuestioning,
+  manageResponseCollection
 } from './StateManagement/reducers';
 
 const logger = createLogger();
 const rootReducer = combineReducers({
   manageNextID,
   manageQuestionList,
-  manageQuizQuestioning
+  manageQuizQuestioning,
+  manageResponseCollection
 })
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 

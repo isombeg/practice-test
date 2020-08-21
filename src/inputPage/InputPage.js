@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import QuestionList from '../QuestionList/QuestionList'
 import {incrementID, addQuestion} from '../StateManagement/actions';
 
@@ -34,9 +35,9 @@ class InputPage extends React.Component{
                 <div className="lh-copy mt3">
                     <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>
                 </div>
-                <div className="lh-copy mt3">
+                <Link to="/quiz" className="lh-copy mt3">
                     <button href="#0" className="f6 link dim black db pointer">Submit</button>
-                </div>
+                </Link>
             </div>
             
         );

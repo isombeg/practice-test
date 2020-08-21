@@ -61,7 +61,7 @@ export const prevQuestion = () => ({
 
 export const addResponse = (questionID, answerID) => ({
     type: "quiz/addResponse",
-    reponse: {
+    response: {
         questionID: questionID,
         answerID: answerID
     }
