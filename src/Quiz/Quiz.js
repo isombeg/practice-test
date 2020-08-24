@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import { nextQuestion, prevQuestion } from '../StateManagement/actions';
 import QuizAnswerList from '../QuizAnswerList/QuizAnswerList';
 
@@ -128,7 +129,9 @@ class Quiz extends React.Component{
                 return (
                     <div className="measure centre">
                         <button onClick={onPrevQuestion}>Previous</button>
-                        <button>Submit</button>
+                        <Link to="/results">
+                            <button>Submit</button>
+                        </Link>
                     </div>
                 )
             }
