@@ -16,44 +16,49 @@ const mapDispatchToProps = (dispatch) => {
 
 const showIfCorrect = (question, answer) => {
     if(question.correctAnswer === answer.id){
-        return (
-            <label className="bg-green">  Correct Answer</label>
-        )
+        // return (
+        //     <label className="bg-green">  Correct Answer</label>
+        // )
+        return "input-reset ba b--black-20 pa2 mb2 db w-70 h2 bg-light-green"
     }
-    else return;
+    else return "input-reset ba b--black-20 pa2 mb2 db w-70 h2";
 }
 
 const AnswerList = ({question, onSetCorrectAnswer, onUpdateAnswer, onDeleteAnswer}) => {
     return (
         question.answers.map((answer) => {
             return (
-                <div className="pa4 black-80">
-                    <div className="measure centre">
+                <div className="pa2 black-80">
+                    <div className="measure center-vert">
                         <input 
-                            type="radio" 
+                            type="radio"
+                            className="mh1"
                             id={answer.id.toString()}
                             name={question.id.toString()}
                             onClick={onSetCorrectAnswer(question.id, answer.id)}
                             />
-                        <label htmlFor={answer.id.toString()} className="f6 b db mb2">
+                        <label 
+                            htmlFor={answer.id.toString()}
+                            className="f6 b db mh1">
                             Answer: 
                         </label>
                         <input
                             id="name"
-                            className="input-reset ba b--black-20 pa2 mb2 db w-70"
+                            className={showIfCorrect(question, answer)}
                             type="text"
                             value={answer.text}
                             aria-describedby="name-desc"
                             onChange={onUpdateAnswer(question.id, answer.id)}
                             />
-                        
-                        <button 
-                            className='w-30 grow f4 link ph3 pv2 dib'
+                        <a 
+                            className="f6 link dim ba ph3 pv2 mb2 dib mh1 black"
+                            href="#0"
                             onClick={onDeleteAnswer(question.id, answer.id)}
                             >
                                 Delete
-                        </button>
-                        {showIfCorrect(question, answer)}
+                        </a>
+
+                        {/* {showIfCorrect(question, answer)} */}
                     </div>
                 </div>
             )

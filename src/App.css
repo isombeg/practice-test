@@ -37,10 +37,29 @@
   }
 }
 
-.center{
+.center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: auto;
+  align-items: center;
+}
+
+.center-hor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-vert {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover {
+  height: 100vh;
+  width: 100vw;
 }
 
 .green { color: var(--green); }

@@ -119,7 +119,7 @@ class Quiz extends React.Component{
         if(currQuestionIndex > 0){
             if(currQuestionIndex + 1 < questions.length){
                 return (
-                    <div className="measure centre">
+                    <div className="measure db">
                         <button onClick={onPrevQuestion}>Previous</button>
                         <button onClick={onNextQuestion}>Next</button>
                     </div>
@@ -127,7 +127,7 @@ class Quiz extends React.Component{
             }
             else{
                 return (
-                    <div className="measure centre">
+                    <div className="measure db">
                         <button onClick={onPrevQuestion}>Previous</button>
                         <Link to="/results">
                             <button>Submit</button>
@@ -138,7 +138,7 @@ class Quiz extends React.Component{
         }
         else{
             return (
-                <div className="measure centre">
+                <div className="measure db">
                     <button onClick={onNextQuestion}>Next</button>
                 </div>
             )
@@ -149,7 +149,7 @@ class Quiz extends React.Component{
         const {questions, currQuestionIndex} = this.props
         return questions.length ?
             (
-                <div>
+                <div className="db">
                     <p>{questions[currQuestionIndex].text}</p>
                     <QuizAnswerList question={questions[currQuestionIndex]} />
                 </div>
@@ -167,7 +167,7 @@ class Quiz extends React.Component{
         
         return (
             
-            <div>
+            <div className="cover center">
                 {this.renderQuestion()}
                 {this.renderButtons()}
             </div>

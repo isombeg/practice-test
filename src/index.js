@@ -13,6 +13,8 @@ import {
   manageResponseCollection
 } from './StateManagement/reducers';
 
+import 'tachyons';
+
 const logger = createLogger();
 const rootReducer = combineReducers({
   manageNextID,

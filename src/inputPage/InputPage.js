@@ -36,39 +36,36 @@ class InputPage extends React.Component{
 
         if(!questions.length){
             return (
-                <button
+                <a
+                    class="f6 link dim ph3 pv2 mb2 dib white bg-mid-gray"
                     href="#0"
-                    className="f6 link dim black db pointer"
-                    disabled
                     >
                         Submit
-                </button>
+                </a>
             )
         }
 
         for(let question of questions){
             if(!question.text.trim().length || question.correctAnswer === null || question.answers.length < 2){
                 return (
-                    <button
+                    <a
+                        class="f6 link dim ph3 pv2 mb2 dib white bg-mid-gray"
                         href="#0"
-                        className="f6 link dim black db pointer"
-                        disabled
                         >
                             Submit
-                    </button>
+                    </a>
                 )
             }
 
             for(let answer of question.answers){
                 if(!answer.text.trim().length){
                     return (
-                        <button
+                        <a
+                            class="f6 link dim ph3 pv2 mb2 dib white bg-mid-gray"
                             href="#0"
-                            className="f6 link dim black db pointer"
-                            disabled
                             >
                                 Submit
-                        </button>
+                        </a>
                     )
                 }
             }
@@ -76,12 +73,12 @@ class InputPage extends React.Component{
 
         return (
             <Link to="/quiz" className="lh-copy mt3">
-                <button
+                <a
+                    class="f6 link dim ph3 pv2 mb2 dib white bg-black"
                     href="#0"
-                    className="f6 link dim black db pointer"
                     >
                         Submit
-                    </button>
+                </a>
             </Link>
         )
    }
@@ -89,13 +86,16 @@ class InputPage extends React.Component{
     render(){
         console.log(this.props.questions);
         return (
-            <div>
+            <div className="center-hor">
                 <div>
                     <QuestionList />
                 </div>
-                <div className="lh-copy mt3">
-                    <button onClick={this.addQuestion} href="#0" className="f6 link dim black db pointer">Add Question</button>
-                </div>
+                <a 
+                    onClick={this.addQuestion}
+                    className="f6 link dim ba bw1 ph3 pv2 mb2 dib black"
+                    href="#0"
+                    >
+                        Add Question</a>
                 {this.validate()}
             </div>
             

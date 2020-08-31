@@ -22,7 +22,7 @@ const QuestionList = (props) => {
         props.questions.map(
             q => {
                 return (
-                    <div>
+                    <div className="center-self">
                         <QuestionForm
                             question={q}
                             onUpdateQuestion={props.onUpdateQuestion(q.id)}

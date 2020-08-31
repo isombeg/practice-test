@@ -40,11 +40,11 @@ class QuestionForm extends React.Component{
                     question={this.props.question}
                     />
                 <div>
-                    <div className='center'>
-                        <div className="lh-copy mt3 w-50">
+                    <div className="center-vert">
+                        <div className="lh-copy ma1">
                             <p onClick={this.addAnswer} href="#0" className="f6 link dim black db pointer">Add Answer</p>
                         </div>
-                        <div className="lh-copy mt3 w-50">
+                        <div className="lh-copy ma1">
                             <p onClick={this.props.onDeleteQuestion} href="#0" className="f6 link dim black db pointer">Delete Question</p>
                         </div>
                     </div>
