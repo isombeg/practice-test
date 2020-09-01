@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import QuestionReview from '../QuestionReview/QuestionReview';
 
 
 const mapStateToProps = state => {
@@ -16,14 +17,12 @@ class ResultsPage extends React.Component{
         let correctResps = 0, resp_ind = 0;
 
         for(let question of questions){
-            console.log('question:', question)
-            console.log('response:', responses[resp_ind])
             if(question.id !== responses[resp_ind].questionID)
-                break;
+                continue;
             else if(question.correctAnswer === responses[resp_ind].answerID){
                 correctResps++;
+                resp_ind++;
             }
-            resp_ind++;
         }
 
         return correctResps;
@@ -49,6 +48,7 @@ class ResultsPage extends React.Component{
                 <p>You answered <em>{correctAnswers}</em> of <em>{questions.length}</em> correctly.</p>
                 {this.renderUnanswered()}
                 <p>Your score: <em>{100*(correctAnswers/questions.length)} %</em></p>
+                <QuestionReview />
             </div>
         )
     }

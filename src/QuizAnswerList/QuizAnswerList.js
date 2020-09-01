@@ -18,6 +18,13 @@ const QuizAnswerList = (props) => {
         question.answers.map((answer) => {
             return (
                 <div  className="ma2">
+                    {/* <a 
+                        class={"f6 grow dim ba ph3 pv2 mb2 dib" + "black"} 
+                        href="#0"
+                        onClick={onAddResponse(question.id, answer.id)}
+                        >
+                            {answer.text}
+                        </a> */}
                     <input 
                         type="radio" 
                         id={answer.id.toString()}
