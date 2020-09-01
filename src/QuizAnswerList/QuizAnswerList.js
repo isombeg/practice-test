@@ -17,14 +17,14 @@ const QuizAnswerList = (props) => {
     return (
         question.answers.map((answer) => {
             return (
-                <div>
+                <div  className="ma2">
                     <input 
                         type="radio" 
                         id={answer.id.toString()}
                         name={question.id.toString()}
                         onClick={onAddResponse(question.id, answer.id)}
                         />
-                    <label for={answer.id.toString()}>
+                    <label className="pa2 f3 fw3 lh-copy" for={answer.id.toString()}>
                         {answer.text}
                     </label><br />
                 </div>

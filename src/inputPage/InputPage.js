@@ -37,7 +37,7 @@ class InputPage extends React.Component{
         if(!questions.length){
             return (
                 <a
-                    class="f6 link dim ph3 pv2 mb2 dib white bg-mid-gray"
+                    class="f6 link ph3 pv2 mb2 dib white bg-mid-gray"
                     href="#0"
                     >
                         Submit
@@ -49,7 +49,7 @@ class InputPage extends React.Component{
             if(!question.text.trim().length || question.correctAnswer === null || question.answers.length < 2){
                 return (
                     <a
-                        class="f6 link dim ph3 pv2 mb2 dib white bg-mid-gray"
+                        class="f6 link ph3 pv2 mb2 dib white bg-mid-gray"
                         href="#0"
                         >
                             Submit
@@ -61,7 +61,7 @@ class InputPage extends React.Component{
                 if(!answer.text.trim().length){
                     return (
                         <a
-                            class="f6 link dim ph3 pv2 mb2 dib white bg-mid-gray"
+                            class="f6 link ph3 pv2 mb2 dib white bg-mid-gray"
                             href="#0"
                             >
                                 Submit

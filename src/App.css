@@ -1,3 +1,8 @@
+.align-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .App {
   text-align: center;
 }
@@ -62,4 +67,7 @@
   width: 100vw;
 }
 
-.green { color: var(--green); }
+.space-evenly {
+  display: flex;
+  justify-content: space-between;
+}
